@@ -30,6 +30,9 @@
         <SortableTableHeader TItem="Grunt" TItem2="string" GetSortableProperty="(grunt) => grunt.UserName">
             <HeaderContent>User</HeaderContent>
         </SortableTableHeader>
+        <SortableTableHeader TItem="Grunt" TItem2="string" GetSortableProperty="(grunt) => grunt.Process">
+            <HeaderContent>Process</HeaderContent>
+        </SortableTableHeader>
         <SortableTableHeader TItem="Grunt" TItem2="IntegrityLevel" GetSortableProperty="(grunt) => grunt.Integrity">
             <HeaderContent>Integrity</HeaderContent>
         </SortableTableHeader>
@@ -47,7 +50,7 @@
         </SortableTableHeader>
         <th class="pl-1 pr-1">
             <div class="secondary-color">
-               <span class="fe fe-eye"></span>
+                <span class="fe fe-eye"></span>
             </div>
         </th>
     </TableHeader>
@@ -68,24 +71,25 @@
             </td>
             <td @attributes="InputAttributes">@grunt.Hostname</td>
             <td @attributes="InputAttributes">@grunt.UserName</td>
+            <td @attributes="InputAttributes">@grunt.Process</td>
             <td @attributes="InputAttributes">@grunt.Integrity</td>
             <td @attributes="InputAttributes">@grunt.LastCheckIn</td>
             <td @attributes="InputAttributes">@grunt.Status</td>
             <td @attributes="InputAttributes">@grunt.Note</td>
             <td @attributes="InputAttributes">@grunt.ImplantTemplate?.Name</td>
             <td @attributes="InputAttributes">
-					@if (grunt.Status == GruntStatus.Hidden)
-					{
-						<button type="button" @onclick="e => OnUnhide(grunt)"  class="btn btn-success ml-2" style="padding: 0 0.5em 0 0.5em">
-							<span class="fe fe-eye"></span>
-						</button>
-					}
-					else
-					{
-						<button type="button" @onclick="e => OnHide(grunt)"  class="btn btn-warning ml-2" style="padding: 0 0.5em 0 0.5em">
-							<span class="fe fe-eye-off"></span>
-						</button>
-					}
+                @if (grunt.Status == GruntStatus.Hidden)
+                {
+                    <button type="button" @onclick="e => OnUnhide(grunt)" class="btn btn-success ml-2" style="padding: 0 0.5em 0 0.5em">
+                        <span class="fe fe-eye"></span>
+                    </button>
+                }
+                else
+                {
+                    <button type="button" @onclick="e => OnHide(grunt)" class="btn btn-warning ml-2" style="padding: 0 0.5em 0 0.5em">
+                        <span class="fe fe-eye-off"></span>
+                    </button>
+                }
             </td>
         </tr>
     </TableRow>
