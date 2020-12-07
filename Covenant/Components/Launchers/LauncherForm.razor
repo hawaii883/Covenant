@@ -326,8 +326,61 @@
     {
         if (DateTime.TryParse(await IJSRuntime.InvokeAsync<string>("GetValue", "#KillDate"), out DateTime date))
         {
-            Launcher.KillDate = date;
-            StateHasChanged();
+            case LauncherType.Binary:
+                fileext = ".exe";
+                mediatype = MediaTypeNames.Application.Octet;
+                content = ((BinaryLauncher)this.Launcher).Base64ILByteString;
+                break;
+            case LauncherType.ServiceBinary:
+                fileext = "_svc.exe"; // bit of a hack to get the SVC in the filename, but I like having it.
+                mediatype = MediaTypeNames.Application.Octet;
+                content = Convert.ToBase64String(Convert.FromBase64String(((ServiceBinaryLauncher)this.Launcher).DiskCode));
+                break;
+            case LauncherType.ShellCode:
+                fileext = ".bin";
+                mediatype = MediaTypeNames.Application.Octet;
+                content = ((ShellCodeLauncher)this.Launcher).Base64ILByteString;
+                break;
+            case LauncherType.Cscript:
+                fileext = ".js";
+                mediatype = MediaTypeNames.Text.Plain;
+                content = Convert.ToBase64String(Common.CovenantEncoding.GetBytes(((CscriptLauncher)this.Launcher).DiskCode));
+                break;
+            case LauncherType.InstallUtil:
+                fileext = ".dll";
+                mediatype = MediaTypeNames.Application.Octet;
+                content = Convert.ToBase64String(Convert.FromBase64String(((InstallUtilLauncher)this.Launcher).DiskCode));
+                break;
+            case LauncherType.MSBuild:
+                fileext = ".xml";
+                mediatype = MediaTypeNames.Text.Plain;
+                content = Convert.ToBase64String(Common.CovenantEncoding.GetBytes(((MSBuildLauncher)this.Launcher).DiskCode));
+                break;
+            case LauncherType.Mshta:
+                fileext = ".hta";
+                mediatype = MediaTypeNames.Text.Plain;
+                content = Convert.ToBase64String(Common.CovenantEncoding.GetBytes(((MshtaLauncher)this.Launcher).DiskCode));
+                break;
+            case LauncherType.PowerShell:
+                fileext = ".ps1";
+                mediatype = MediaTypeNames.Text.Plain;
+                content = Convert.ToBase64String(Common.CovenantEncoding.GetBytes(((PowerShellLauncher)this.Launcher).PowerShellCode));
+                break;
+            case LauncherType.Regsvr32:
+                fileext = ".sct";
+                mediatype = MediaTypeNames.Application.Octet;
+                content = Convert.ToBase64String(Common.CovenantEncoding.GetBytes(((Regsvr32Launcher)this.Launcher).DiskCode));
+                break;
+            case LauncherType.Wmic:
+                fileext = "xsl";
+                mediatype = MediaTypeNames.Text.Plain;
+                content = Convert.ToBase64String(Common.CovenantEncoding.GetBytes(((WmicLauncher)this.Launcher).DiskCode));
+                break;
+            case LauncherType.Wscript:
+                fileext = "GruntStager.js";
+                mediatype = MediaTypeNames.Text.Plain;
+                content = Convert.ToBase64String(Common.CovenantEncoding.GetBytes(((WscriptLauncher)this.Launcher).DiskCode));
+                break;
         }
         await this.OnGenerate.InvokeAsync(Launcher);
     }
