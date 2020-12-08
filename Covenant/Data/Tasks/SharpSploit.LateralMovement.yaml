@@ -21,12 +21,13 @@
     {
         public static string Execute(string ComputerName, string Command, string Username = "", string Password = "")
         {
+            var result = new SharpSploitResultList<WMI.WmiExecuteResult>();
             try
             {
-                WMI.WmiExecuteResult result = WMI.WMIExecute(ComputerName, Command, Username, Password);
-                if (result != null)
+                result.Add(WMI.WMIExecute(ComputerName, Command, Username, Password));
+                if (result.Count > 0)
                 {
-                    return new SharpSploitResultList<WMI.WmiExecuteResult> { WMI.WMIExecute(ComputerName, Command, Username, Password) }.ToString();
+                    return result.ToString();
                 }
                 else
                 {
@@ -149,12 +150,13 @@
     {
         public static string Execute(string ComputerName, string Command, string Username = "", string Password = "")
         {
+            var result = new SharpSploitResultList<WMI.WmiExecuteResult>();
             try
             {
-                WMI.WmiExecuteResult result = WMI.WMIExecute(ComputerName, Command, Username, Password);
-                if (result != null)
+                result.Add(WMI.WMIExecute(ComputerName, Command, Username, Password));
+                if (result.Count > 0)
                 {
-                    return new SharpSploitResultList<WMI.WmiExecuteResult> { WMI.WMIExecute(ComputerName, Command, Username, Password) }.ToString();
+                    return result.ToString();
                 }
                 else
                 {
