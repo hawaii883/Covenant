@@ -1,5 +1,5 @@
 ﻿- Name: Inject
-  Aliases:
+  Aliases: []
   Description: Inject shellcode into a process using Create Remote Thread.
   Author: 
       Name: 
