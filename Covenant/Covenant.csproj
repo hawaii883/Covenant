@@ -81,16 +81,11 @@
     <Reference Include="dnlib">
       <HintPath>refs\dnlib.dll</HintPath>
     </Reference>
-    <Reference Include="Donut">
-      <HintPath>refs\Donut.dll</HintPath>
-    </Reference>
     <Reference Include="PeNet">
       <HintPath>refs\PeNet.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Covenant.API\Covenant.API.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
+    <Reference Include="Donut">
+      <HintPath>refs\Donut.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
