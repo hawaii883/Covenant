@@ -77,6 +77,22 @@ namespace Covenant.Models.Launchers
             this.DiskCode = DiskCode.Replace("{{ASSEMBLY_BUFFER}}", this.random_var_assemblyBuffer);
 
 
+            // Replacements for obfuscation
+            this.DiskCode = DiskCode.Replace("{{PATCH_AMSI}}", this.random_var_patchAmsi);
+            this.DiskCode = DiskCode.Replace("{{AMSI}}", this.random_var_amsi);
+            this.DiskCode = DiskCode.Replace("{{MEMORY_STREAM}}", this.random_var_outputMemoryStream);
+            this.DiskCode = DiskCode.Replace("{{DEFLATE_STREAM}}", this.random_var_deflateStream);
+            this.DiskCode = DiskCode.Replace("{{BYTE_ARRAY}}", this.random_var_byteArray);
+            this.DiskCode = DiskCode.Replace("{{READ}}", this.random_var_read);
+            this.DiskCode = DiskCode.Replace("{{LIB}}", this.random_var_lib);
+            this.DiskCode = DiskCode.Replace("{{AMSI_DLL_0}}", this.random_var_amsi_dll[0]);
+            this.DiskCode = DiskCode.Replace("{{AMSI_DLL_1}}", this.random_var_amsi_dll[1]);
+            this.DiskCode = DiskCode.Replace("{{AMSI_SCAN_BUFF_0}}", this.random_var_amsiScanBuffer[0]);
+            this.DiskCode = DiskCode.Replace("{{AMSI_SCAN_BUFF_1}}", this.random_var_amsiScanBuffer[1]);
+            this.DiskCode = DiskCode.Replace("{{AMSI_SCAN_BUFF_2}}", this.random_var_amsiScanBuffer[2]);
+            this.DiskCode = DiskCode.Replace("{{ASSEMBLY_BUFFER}}", this.random_var_assemblyBuffer);
+
+
             string launcher = "msbuild.exe" + " " + template.Name + ".xml";
             this.LauncherString = launcher;
             return this.LauncherString;

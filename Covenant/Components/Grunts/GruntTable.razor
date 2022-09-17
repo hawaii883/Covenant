@@ -125,9 +125,6 @@
     [Parameter]
     public EventCallback<Grunt> OnSubmit { get; set; }
 
-    [CascadingParameter]
-    private Task<AuthenticationState> AuthenticationState { get; set; }
-
     [Parameter]
     public RenderFragment ButtonTray { get; set; }
 
